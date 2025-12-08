@@ -3,42 +3,226 @@
 {% block title %}Sign up{% endblock %}
 
 {% block content %}
-<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-    <h1 class="mb-6 text-3xl">Sign Up</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-
-        <div class="mb-3">
-            <label class="inline-block mb-2">Username</label><br>
-            {{ form.username }}
-        </div>
-        
-        <div class="mb-3">
-            <label class="inline-block mb-2">Email</label><br>
-            {{ form.email }}
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full">
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+            <div class="absolute top-1/4 -left-20 w-72 h-72 bg-teal-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
         </div>
 
-        <div class="mb-3">
-            <label class="inline-block mb-2">password</label><br>
-            {{ form.password1 }}
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl mb-4 shadow-lg transform hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-2">Create Account</h1>
+            <p class="text-gray-600">Join us and start your journey today</p>
         </div>
 
-        <div class="mb-3">
-            <label class="inline-block mb-2">Confirm password</label><br>
-            {{ form.password2 }}
+        <div class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-8 border border-gray-200/50 transform hover:shadow-3xl transition-all duration-300">
+            <form method="post" action="." class="space-y-5">
+                {% csrf_token %}
+
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-teal-600">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Username
+                        </span>
+                    </label>
+                    <div class="relative">
+                        {{ form.username }}
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-teal-500 to-purple-500 rounded-xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-teal-600">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Email
+                        </span>
+                    </label>
+                    <div class="relative">
+                        <input type="email" name="email" placeholder="" class="w-full py-4 px-6 rounded-xl" required>
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-teal-500 to-purple-500 rounded-xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-300"></div>
+                </div>
+                </div>
+
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-teal-600">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                            Password
+                        </span>
+                    </label>
+                    <div class="relative">
+                        {{ form.password1 }}
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-teal-500 to-purple-500 rounded-xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-teal-600">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Confirm Password
+                        </span>
+                    </label>
+                    <div class="relative">
+                        {{ form.password2 }}
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-teal-500 to-purple-500 rounded-xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+
+                {% if form.errors or form.non_field_errors %}
+                <div class="bg-gradient-to-r from-red-50 to-pink-50 border-l-4 border-red-500 rounded-xl p-5 animate-shake">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-red-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <h3 class="text-sm font-semibold text-red-800 mb-2">Please correct the following errors:</h3>
+                            <ul class="text-sm text-red-700 space-y-1">
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        {% for error in field.errors %}
+                                            <li class="flex items-start">
+                                                <span class="mr-2">•</span>
+                                                <span>{{ error }}</span>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if form.non_field_errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <li class="flex items-start">
+                                            <span class="mr-2">•</span>
+                                            <span>{{ error }}</span>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <button type="submit" class="relative w-full group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 via-purple-500 to-teal-500 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-300 animate-gradient"></div>
+                    <div class="relative w-full py-4 px-8 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 rounded-xl text-white font-semibold text-lg shadow-lg transform group-hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                        <span>Create Account</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </div>
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Already have an account?
+                    <a href="{% url 'core:login' %}" class="font-semibold text-teal-600 hover:text-teal-700 transition-colors duration-200">Sign in</a>
+                </p>
+            </div>
         </div>
 
-        {% if form.errors or form.non_field_errors %}
-        <div cass="mb-3 p-6 bg-red-400 rounded-xl">
-            {% for field in form  %}
-                {{ field.errors }}
-            {% endfor %}
-
-            {{ form.non_field_errors }}
+        <div class="mt-8 flex items-center justify-center gap-6 text-xs text-gray-500">
+            <div class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Secure</span>
+            </div>
+            <div class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Protected</span>
+            </div>
+            <div class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                </svg>
+                <span>Private</span>
+            </div>
         </div>
-        {% endif %}
+    </div>
+</div>
 
-        <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
-    </form>
-<div>
+<style>
+    /* Enhanced input styling */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.75rem;
+        font-size: 0.9375rem;
+        transition: all 0.3s ease;
+        /* --- START OF CHANGES --- */
+        background: #f8f8f8; /* Changed input background to light gray */
+        color: #000000; /* Changed input text color to black */
+        /* --- END OF CHANGES --- */
+    }
+
+    /* Target placeholders explicitly for consistency (Optional but recommended) */
+    input::placeholder {
+        color: #888; /* Keep placeholder text slightly lighter */
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #14b8a6;
+        box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1);
+        transform: translateY(-1px);
+    }
+
+    input[type="text"]:hover,
+    input[type="email"]:hover,
+    input[type="password"]:hover {
+        border-color: #cbd5e1;
+    }
+
+    /* Shake animation for errors */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+        20%, 40%, 60%, 80% { transform: translateX(4px); }
+    }
+
+    .animate-shake {
+        animation: shake 0.5s ease-in-out;
+    }
+
+    /* Gradient animation */
+    @keyframes gradient {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 3s ease infinite;
+    }
+
+    /* Pulse animation refinement */
+    @keyframes pulse {
+        0%, 100% { opacity: 0.2; transform: scale(1); }
+        50% { opacity: 0.3; transform: scale(1.05); }
+    }
+</style>
 {% endblock %}

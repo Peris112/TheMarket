@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ty&dp(v4nvto+^-1ros*^_rtd_-rw%wzs+o=ek^su+zx5v6yzl
 DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1']
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -84,12 +84,8 @@ WSGI_APPLICATION = 'themarket.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': "django.db.backends.postgresql_psycopg2",
-        'HOST': "db.hxrfbdsvqkgsuatvdczi.supabase.co",
-        'NAME': "postgres",
-        'USER': "postgres",
-        'PASSWORD': "Venomvenom@069",
-        'PORT': "5432",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

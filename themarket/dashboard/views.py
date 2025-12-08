@@ -8,3 +8,6 @@ def index(request):
     items = Items.objects.filter(created_by = request.user)
     return render(request, 'dashboard/index.html', {'items': items,})
 
+
+def contact(request):
+    return render(request, 'core/contact.html')

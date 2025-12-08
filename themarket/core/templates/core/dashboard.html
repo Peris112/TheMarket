@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1 class="text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-8">
+        <i class="fas fa-chart-line text-teal-500 mr-3"></i> Seller Dashboard
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-b-4 border-teal-500">
+            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Active Listings</p>
+            <p class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-1">{{ items.count }}</p>
+            <a href="{% url 'items:items' %}" class="text-teal-600 dark:text-teal-400 mt-2 block hover:underline text-sm">Manage items &rarr;</a>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-b-4 border-gray-500">
+            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Unread Messages</p>
+            <p class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-1">{{ unread_messages|default:0 }}</p>
+            <a href="{% url 'conversation:inbox' %}" class="text-gray-600 dark:text-gray-400 mt-2 block hover:underline text-sm">Go to inbox &rarr;</a>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-b-4 border-yellow-500">
+            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Items Sold</p>
+            <p class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-1">{{ sold_items_count|default:0 }}</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400">Total items marked as sold.</span>
+        </div>
+    </div>
+    
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">Your Active Items</h2>
+
+    <div class="space-y-4">
+        {% if items %}
+            {% for item in items %}
+                <div class="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition duration-300">
+                    <div class="w-16 h-16 mr-4 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <div class="w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-xl">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">{{ item.name }}</h3>
+                        <p class="text-sm text-teal-600 dark:text-teal-400 font-bold">${{ item.price|floatformat:2 }}</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 ml-4 flex-shrink-0">
+                        <a href="{% url 'items:detail' item.pk %}" class="text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition duration-300">
+                            <i class="fas fa-eye mr-1"></i> View
+                        </a>
+                        <a href="{% url 'items:edit' item.pk %}" class="px-3 py-1 text-sm font-medium text-white bg-teal-600 rounded hover:bg-teal-700 transition duration-300">
+                            <i class="fas fa-edit mr-1"></i> Edit
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="p-8 text-center bg-gray-50 dark:bg-gray-800/50 rounded-lg shadow-inner">
+                <p class="text-lg text-gray-600 dark:text-gray-400">You don't have any active listings yet.</p>
+                <a href="{% url 'items:new' %}" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition duration-300">
+                    <i class="fas fa-plus-circle mr-2"></i> Upload your first item
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

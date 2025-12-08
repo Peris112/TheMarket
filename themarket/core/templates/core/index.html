@@ -3,41 +3,72 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mv-12 text-2xl text-center">Newest items</h2>
-        
-        <div class="grid grid-cols-3 gap-3">
-            {% for items in items %}
-                <div>
-                    <a href="{% url 'items:detail' items.id %}">
-                        <div>
-                            <img src="{{ items.image.url }}" class="rounded-t-xl">
+    <main class="space-y-16">
+
+        <section class="p-4 md:p-12 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-2xl">
+            <h2 class="mb-10 text-4xl md:text-5xl font-extrabold text-center text-teal-600 dark:text-teal-400 tracking-tight">
+                <i class="fas fa-magic mr-3"></i> Fresh Finds: Newest Listings
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for item in items %}
+                    <a href="{% url 'items:detail' item.id %}"
+                       class="block overflow-hidden rounded-xl shadow-lg
+                              bg-white dark:bg-gray-900
+                              hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group">
+
+                        <div class="aspect-video overflow-hidden">
+                            <img src="{{ item.image.url }}"
+                                 alt="{{ item.name }}"
+                                 class="w-full h-full object-cover transform group-hover:scale-[1.05] transition duration-500">
                         </div>
 
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{ items.name }}</h2>
-                            <p class="text-gray-500">Price: {{ items.price }}</p>
-                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-teal-600 transition duration-300 mb-1 truncate">
+                                {{ item.name }}
+                            </h3>
+                            <p class="text-2xl font-extrabold text-teal-700 dark:text-teal-500 mt-2">
+                                {{ item.price }}
+                            </p>
+                            </div>
                     </a>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+                {% endfor %}
+            </div>
 
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mv-12 text-2xl text-center">Categories</h2>
-        
-        <div class="grid grid-cols-3 gap-3">
-            {% for category in categories %}
-                <div>
-                    <a href="#">
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{ category.name }}</h2>
-                            <p class="text-gray-500">{{ category.items.count }} items</p>
-                        </div>
+            {% if items|length > 0 %}
+                <div class="text-center mt-10">
+                    <a href="{% url 'items:items' %}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-md text-white bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 transition duration-300">
+                        <i class="fas fa-search-plus mr-2"></i> View All Items
                     </a>
                 </div>
-            {% endfor %}
-        </div>
-    </div>
+            {% endif %}
+
+        </section>
+
+        <section class="p-4 md:p-12 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-teal-500/10">
+            <h2 class="mb-10 text-4xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white tracking-tight">
+                <i class="fas fa-layer-group mr-3 text-teal-500"></i> Browse by Category
+            </h2>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                {% for category in categories %}
+                    <a href="#" class="block text-center p-6 rounded-xl shadow-lg bg-gray-100 dark:bg-gray-800
+                                     border-b-4 border-transparent hover:border-teal-500
+                                     hover:shadow-2xl hover:scale-[1.05] transition-all duration-300">
+
+                        <div class="mb-3 text-3xl text-teal-600 dark:text-teal-400">
+                            <i class="fas fa-folder-open"></i> </div>
+
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                            {{ category.name }}
+                        </h3>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {{ category.items.count }} items
+                        </p>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+
+    </main>
 {% endblock %}

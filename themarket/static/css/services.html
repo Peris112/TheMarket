@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Group - Services Portal</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="bootstrap/js/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">PINNACLE FINANCIAL GROUP</div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="btn btn-outline-info">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html" class="active">Services</a></li>
+                        <li><a href="contactus.html">Contact Us</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Services Page -->
+        <section id="services-page" class="services-page">
+            <section class="services-hero">
+                <div class="container">
+                    <h1>Our Comprehensive Financial Services</h1>
+                    <p>We offer a full suite of financial products designed to meet every stage of your life and business, with a focus on security, growth, and personalized solutions.</p>
+                </div>
+            </section>
+
+            <section class="services-section">
+                <div class="container">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-number">1</div>
+                            <div class="service-icon">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Member Savings Accounts</h3>
+                                <p>Secure accounts with competitive interest rates. Deposit any amount, anytime, to build your capital for the future. *Key to Loan Eligibility.*</p>
+                                <ul class="service-features">
+                                    <li>Standard Savings</li>
+                                    <li>Premium Tier Accounts</li>
+                                    <li>Targeted Goal Savings</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-number">2</div>
+                            <div class="service-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Flexible Withdrawals</h3>
+                                <p>Access your funds via our secure online portal or local branches. Fast and reliable access to your money when you need it most.</p>
+                                <ul class="service-features">
+                                    <li>24/7 Online Access</li>
+                                    <li>No Hidden Fees</li>
+                                    <li>Instant Transfers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-number">3</div>
+                            <div class="service-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Personalized Loan Products</h3>
+                                <p>Our loans are tied to your savings amount, ensuring responsible lending and favorable terms. The more you save, the higher your eligible loan amount.</p>
+                                <ul class="service-features">
+                                    <li>Personal Loans (Secured by Savings)</li>
+                                    <li>Business & SME Loans</li>
+                                    <li>Emergency Micro-Loans (for established members)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-number">4</div>
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Financial Advisory</h3>
+                                <p>Free consultation services with our certified financial experts to help you plan your budget, investments, and long-term financial goals.</p>
+                                <ul class="service-features">
+                                    <li>Personal Financial Planning</li>
+                                    <li>Investment Strategies</li>
+                                    <li>Retirement Planning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Ready to Access Our Services?</h2>
+                        <p>Click below to access our secure financial services portal where you can withdraw, deposit, check your balance, or apply for loans.</p>
+                        <button id="access-services-btn" class="cta-button">Access Services Portal</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+<section class="cc">
+    <footer>
+        <p>&copy; 2025 Pinnacle Financial Group. </p>
+        <p>Email: pinnaclefinance@gmail.com</p>
+        <p>All rights reserved.</p>
+
+    </footer>
+</section>
+
+        <!-- Service Selection Page -->
+        <section id="service-selection-page" class="service-selection hidden">
+            <div class="container">
+                <div class="back-btn">
+                    <button id="back-to-services" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Back to Services
+                    </button>
+                </div>
+                
+                <div class="form-header">
+                    <h2>Select a Service</h2>
+                    <p>Choose the financial service you'd like to access</p>
+                </div>
+                
+                <div class="service-options">
+                    <div class="service-option" data-service="withdrawal">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>Withdrawal</h3>
+                        <p>Withdraw funds from your account</p>
+                    </div>
+                    
+                    <div class="service-option" data-service="deposit">
+                        <i class="fas fa-piggy-bank"></i>
+                        <h3>Deposit</h3>
+                        <p>Deposit funds into your account</p>
+                    </div>
+                    
+                    <div class="service-option" data-service="balance">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Check Balance</h3>
+                        <p>View your current account balance</p>
+                    </div>
+                    
+                    <div class="service-option" data-service="loan">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>Apply for Loan</h3>
+                        <p>Submit a loan application</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Withdrawal Form -->
+        <section id="withdrawal-form" class="service-selection hidden">
+            <div class="container">
+                <div class="back-btn">
+                    <button id="back-to-selection-from-withdrawal" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Back to Services
+                    </button>
+                </div>
+                
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Withdrawal Request</h2>
+                        <p>Please fill out the form below to withdraw funds from your account</p>
+                    </div>
+                    
+                    <form id="withdrawalForm">
+                        <div class="form-group">
+                            <label for="account-number">Account Number</label>
+                            <input type="text" id="account-number" class="form-control" placeholder="Enter your account number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="withdrawal-amount">Withdrawal Amount</label>
+                            <input type="number" id="withdrawal-amount" class="form-control" placeholder="Enter amount to withdraw" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="withdrawal-method">Withdrawal Method</label>
+                            <select id="withdrawal-m>
+
