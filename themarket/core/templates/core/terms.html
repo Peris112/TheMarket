@@ -3,110 +3,116 @@
 {% block title %}Terms of Service{% endblock %}
 
 {% block content %}
-       <section id="terms-of-service" class="mt-12 px-4 py-16 lg:px-6 bg-white dark:bg-gray-950 rounded-3xl shadow-3xl dark:shadow-teal-900/20 transition-colors duration-500">
-    <div class="max-w-7xl mx-auto">
+<section id="terms-of-service" class="mt-4 px-3 py-6 lg:px-4 bg-white dark:bg-gray-950 rounded-2xl transition-colors duration-500">
+    <div class="max-w-5xl mx-auto">
 
-        <header class="text-center mb-16">
-            <h2 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tighter drop-shadow-md">
-                <i class="fas fa-file-contract mr-3 text-teal-500"></i> Terms of Service
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tighter">
+                <i class="fas fa-file-contract mr-2 text-teal-500"></i> Terms of Service
             </h2>
-            <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto italic">
-                Last Updated: December 2, 2025
-            </p>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 italic">Last Updated: December 2, 2025</p>
         </header>
 
-        <div class="lg:grid lg:grid-cols-4 lg:gap-12">
+        <div class="lg:grid lg:grid-cols-4 lg:gap-5">
 
+            <!-- Sidebar Nav -->
             <aside class="hidden lg:block lg:col-span-1">
-                <div class="sticky top-28 p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg border border-teal-500/20">
-                    <h3 class="text-lg font-extrabold text-teal-600 dark:text-teal-400 mb-4 uppercase tracking-wider">
-                        Quick Navigation
-                    </h3>
-                    <ul class="space-y-3">
-                        <li><a href="#acceptance" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">1. Acceptance of Terms</a></li>
-                        <li><a href="#accounts" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">2. User Accounts</a></li>
-                        <li><a href="#marketplace" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">3. Marketplace Conduct</a></li>
-                        <li><a href="#payments" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">4. Payment & Fees</a></li>
-                        <li><a href="#disclaimers" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">5. Warranties & Disclaimers</a></li>
-                        <li><a href="#termination" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">6. Termination</a></li>
-                        <li><a href="#governing" class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition duration-200 block text-sm font-medium border-l-2 border-transparent hover:border-teal-500 pl-2">7. Governing Law</a></li>
+                <div class="sticky top-28 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl border border-teal-500/20">
+                    <h3 class="text-xs font-extrabold text-teal-600 dark:text-teal-400 mb-2 uppercase tracking-wider">Navigation</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#acceptance"   class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">1. Acceptance</a></li>
+                        <li><a href="#accounts"     class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">2. Accounts</a></li>
+                        <li><a href="#marketplace"  class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">3. Marketplace</a></li>
+                        <li><a href="#payments"     class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">4. Payments</a></li>
+                        <li><a href="#disclaimers"  class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">5. Disclaimers</a></li>
+                        <li><a href="#termination"  class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">6. Termination</a></li>
+                        <li><a href="#governing"    class="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition block text-xs font-medium border-l-2 border-transparent hover:border-teal-500 pl-2 py-0.5">7. Governing Law</a></li>
                     </ul>
                 </div>
             </aside>
 
-            <article class="lg:col-span-3 space-y-12">
+            <!-- Content -->
+            <article class="lg:col-span-3 space-y-3">
 
-                <section id="acceptance" class="p-8 bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg border-l-4 border-teal-500">
-                    <h3 class="text-3xl font-extrabold text-teal-700 dark:text-teal-400 mb-4">1. Acceptance of Terms</h3>
-                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        By accessing or using the services of BizConnect, you agree to be bound by these Terms of Service and all policies referenced herein. If you do not agree to all of these terms, do not access or use the Service. We reserve the right to update and change the Terms of Service by posting updates and changes to the Site. Your continued use of the Service after any such changes constitutes your acceptance of the revised Terms.
+                <!-- 1. Acceptance -->
+                <section id="acceptance" class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border-l-4 border-teal-500">
+                    <h3 class="text-base font-extrabold text-teal-700 dark:text-teal-400 mb-1">1. Acceptance of Terms</h3>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Using BizConnect means you accept these Terms. We may update them at any time — continued use constitutes acceptance of any changes.
                     </p>
                 </section>
 
-                <section id="accounts" class="p-8 bg-teal-50 dark:bg-teal-950 rounded-xl shadow-xl **transform hover:scale-[1.01] transition-transform duration-300** border-l-8 border-teal-600 dark:shadow-2xl">
-                    <h3 class="text-3xl font-extrabold text-teal-800 dark:text-teal-400 mb-4">
-                        <i class="fas fa-user-circle mr-3 text-teal-600"></i> 2. User Accounts
+                <!-- 2. Accounts -->
+                <section id="accounts" class="p-4 bg-teal-50 dark:bg-teal-950 rounded-xl border-l-8 border-teal-600 transform hover:scale-[1.01] transition-transform duration-300 dark:shadow-2xl">
+                    <h3 class="text-base font-extrabold text-teal-800 dark:text-teal-400 mb-2">
+                        <i class="fas fa-user-circle mr-2 text-teal-600"></i> 2. User Accounts
                     </h3>
-                    <ul class="space-y-4 text-black dark:text-gray-300 list-disc list-inside pl-4">
-                       <li>Eligibility: You must be at least 18 years old or the age of majority in your jurisdiction to create an account.</li>
-                        <li>Account Security: You are responsible for maintaining the confidentiality of your password and are responsible for all activities that occur under your account, including activities related to your **Dashboard**.</li>
-                        <li>Accuracy: You agree to provide current, complete, and accurate registration information and to update such information as necessary.</li>
-                        <li>Termination: We reserve the right to suspend or terminate your account and your access to the Services at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users of the Service, us, or third parties, or for any other reason.</li>
-                    </ul>
-                </section>
-
-                <section id="marketplace" class="p-8 bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg border-l-4 border-teal-500">
-                    <h3 class="text-3xl font-extrabold text-teal-700 dark:text-teal-400 mb-4">3. Marketplace Conduct</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">
-                        Users must adhere to the highest standards of integrity and fair dealing when listing, buying, and communicating on the Site.
-                    </p>
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300 list-disc list-inside pl-4">
-                        <li>Seller Obligations: All listings must be accurate, transparent, and comply with all applicable laws.</li>
-                        <li>Prohibited Items: Listing illegal, counterfeit, or harmful goods is strictly prohibited and will result in immediate account termination.</li>
-                        <li>Communication: All transactional communication must take place through the provided Inbox system for dispute resolution and security purposes.</li>
-                    </ul>
-                </section>
-
-                <section id="payments" class="p-8 bg-indigo-50 dark:bg-gray-800 rounded-xl shadow-2xl **transform hover:scale-[1.01] transition-transform duration-300** border-l-8 border-indigo-600">
-                    <h3 class="text-3xl font-extrabold text-indigo-800 dark:text-white mb-4">
-                        <i class="fas fa-credit-card mr-3 text-indigo-600"></i> 4. Payment & Fees
-                    </h3>
-                    <div class="bg-teal-50 dark:bg-teal-950 p-4 rounded-lg text-gray-800 dark:text-gray-200 mb-4 border border-teal-200 dark:border-teal-800">
-                        Note: All payments are processed securely through third-party payment gateways. We do not store raw credit card details.
+                    <div class="grid grid-cols-2 gap-2 text-xs text-black dark:text-gray-300">
+                        <div class="flex items-start gap-1"><i class="fas fa-check text-teal-500 mt-0.5"></i><span><strong>Eligibility:</strong> Must be 18+.</span></div>
+                        <div class="flex items-start gap-1"><i class="fas fa-check text-teal-500 mt-0.5"></i><span><strong>Security:</strong> You own your account activity.</span></div>
+                        <div class="flex items-start gap-1"><i class="fas fa-check text-teal-500 mt-0.5"></i><span><strong>Accuracy:</strong> Keep your info up to date.</span></div>
+                        <div class="flex items-start gap-1"><i class="fas fa-check text-teal-500 mt-0.5"></i><span><strong>Termination:</strong> We may suspend violating accounts.</span></div>
                     </div>
-                    <ul class="space-y-4 text-gray-700 dark:text-gray-300 list-disc list-inside pl-4">
-                        <li>Seller Fees: The Market charges a specified transaction fee (as outlined in the Seller Policy) on all successful sales.</li>
-                        <li>Billing: By providing payment information, you authorize us to charge the applicable fees.</li>
-                        <li>Taxation: Users are responsible for all applicable taxes related to their transactions.</li>
-                    </ul>
                 </section>
 
-                <section id="disclaimers" class="p-8 bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg border-l-4 border-red-500">
-                    <h3 class="text-3xl font-extrabold text-red-600 dark:text-red-400 mb-4">5. Warranties & Disclaimers</h3>
-                    <p class="text-lg text-gray-700 dark:text-gray-300 font-bold leading-relaxed">
-                        THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS.
-                    </p>
-                    <p class="text-gray-700 dark:text-gray-300 mt-3">
-                        The Market expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We make no warranty that the Service will be uninterrupted, timely, secure, or error-free.
-                    </p>
+                <!-- 3. Marketplace -->
+                <section id="marketplace" class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border-l-4 border-teal-500">
+                    <h3 class="text-base font-extrabold text-teal-700 dark:text-teal-400 mb-2">3. Marketplace Conduct</h3>
+                    <div class="grid grid-cols-3 gap-2 text-xs text-gray-700 dark:text-gray-300">
+                        <div class="p-2 bg-white dark:bg-gray-800 rounded-lg border border-teal-100 dark:border-teal-900">
+                            <i class="fas fa-list-check text-teal-500 mb-1 block"></i>
+                            <strong>Sellers</strong> must post accurate, law-compliant listings.
+                        </div>
+                        <div class="p-2 bg-white dark:bg-gray-800 rounded-lg border border-teal-100 dark:border-teal-900">
+                            <i class="fas fa-ban text-red-500 mb-1 block"></i>
+                            <strong>Prohibited:</strong> Illegal or counterfeit goods → instant ban.
+                        </div>
+                        <div class="p-2 bg-white dark:bg-gray-800 rounded-lg border border-teal-100 dark:border-teal-900">
+                            <i class="fas fa-inbox text-teal-500 mb-1 block"></i>
+                            <strong>Inbox only</strong> for all transactional communication.
+                        </div>
+                    </div>
                 </section>
 
-                <section id="termination" class="p-8 bg-red-50 dark:bg-red-950 rounded-xl shadow-2xl **transform hover:scale-[1.01] transition-transform duration-300** border-l-8 border-red-600">
-                    <h3 class="text-3xl font-extrabold text-red-800 dark:text-red-400 mb-4">
-                        <i class="fas fa-ban mr-3 text-red-600"></i> 6. Termination
+                <!-- 4. Payments -->
+                <section id="payments" class="p-4 bg-indigo-50 dark:bg-gray-800 rounded-xl border-l-8 border-indigo-600 transform hover:scale-[1.01] transition-transform duration-300 shadow-2xl">
+                    <h3 class="text-base font-extrabold text-indigo-800 dark:text-white mb-2">
+                        <i class="fas fa-credit-card mr-2 text-indigo-600"></i> 4. Payment & Fees
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300">
-                        We may terminate or suspend your account and access to the Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will immediately cease.
+                    <div class="bg-teal-50 dark:bg-teal-950 px-3 py-2 rounded-lg text-xs text-gray-800 dark:text-gray-200 mb-2 border border-teal-200 dark:border-teal-800">
+                        <i class="fas fa-shield-alt text-teal-500 mr-1"></i> Payments are processed by third-party gateways. No raw card data is stored.
+                    </div>
+                    <div class="flex gap-3 text-xs text-gray-700 dark:text-gray-300">
+                        <div class="flex-1 flex items-start gap-1"><i class="fas fa-percent text-indigo-400 mt-0.5"></i><span><strong>Fees:</strong> Transaction fee applies per sale (see Seller Policy).</span></div>
+                        <div class="flex-1 flex items-start gap-1"><i class="fas fa-receipt text-indigo-400 mt-0.5"></i><span><strong>Tax:</strong> Users handle their own applicable taxes.</span></div>
+                    </div>
+                </section>
+
+                <!-- 5. Disclaimers -->
+                <section id="disclaimers" class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border-l-4 border-red-500">
+                    <h3 class="text-base font-extrabold text-red-600 dark:text-red-400 mb-1">5. Warranties & Disclaimers</h3>
+                    <p class="text-xs font-bold text-gray-700 dark:text-gray-300">SERVICE PROVIDED "AS IS" — NO WARRANTIES.</p>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1">
+                        We disclaim all implied warranties including merchantability and fitness. No guarantee of uptime, security, or error-free operation.
                     </p>
                 </section>
 
-                <section id="governing" class="p-8 bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg border-l-4 border-teal-500">
-                    <h3 class="text-3xl font-extrabold text-teal-700 dark:text-teal-400 mb-4">7. Governing Law</h3>
-                    <p class="text-lg text-gray-700 dark:text-gray-300 font-bold leading-relaxed">
-                        These Terms shall be governed and construed in accordance with the laws of Kenya, without regard to its conflict of law provisions.
+                <!-- 6. Termination -->
+                <section id="termination" class="p-4 bg-red-50 dark:bg-red-950 rounded-xl border-l-8 border-red-600 transform hover:scale-[1.01] transition-transform duration-300 shadow-2xl">
+                    <h3 class="text-base font-extrabold text-red-800 dark:text-red-400 mb-1">
+                        <i class="fas fa-ban mr-2 text-red-600"></i> 6. Termination
+                    </h3>
+                    <p class="text-xs text-gray-700 dark:text-gray-300">
+                        We may suspend or terminate accounts immediately and without notice for any Terms violation. Access ceases upon termination.
                     </p>
-                    <p class="text-gray-700 dark:text-gray-300 mt-3">
-                        Any legal action or proceeding arising out of or relating to these Terms will be instituted in the courts located in Nairobi, Kenya.
+                </section>
+
+                <!-- 7. Governing Law -->
+                <section id="governing" class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border-l-4 border-teal-500">
+                    <h3 class="text-base font-extrabold text-teal-700 dark:text-teal-400 mb-1">7. Governing Law</h3>
+                    <p class="text-xs text-gray-700 dark:text-gray-300">
+                        These Terms are governed by the <strong>laws of Kenya</strong>. All disputes are subject to the jurisdiction of courts in <strong>Nairobi, Kenya</strong>.
                     </p>
                 </section>
 

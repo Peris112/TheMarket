@@ -3,64 +3,190 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h1 class="text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-8">
-        <i class="fas fa-chart-line text-teal-500 mr-3"></i> Seller Dashboard
-    </h1>
+<style>
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes countUp {
+        from { opacity: 0; transform: scale(0.8); }
+        to   { opacity: 1; transform: scale(1); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease both; }
+    .fade-up-1 { animation-delay: 0.05s; }
+    .fade-up-2 { animation-delay: 0.12s; }
+    .fade-up-3 { animation-delay: 0.19s; }
+    .fade-up-4 { animation-delay: 0.26s; }
+    .count-in { animation: countUp 0.5s cubic-bezier(0.34,1.56,0.64,1) both; animation-delay: 0.3s; }
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-b-4 border-teal-500">
-            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Active Listings</p>
-            <p class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-1">{{ items.count }}</p>
-            <a href="{% url 'items:items' %}" class="text-teal-600 dark:text-teal-400 mt-2 block hover:underline text-sm">Manage items &rarr;</a>
-        </div>
+    .stat-card {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+    }
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+        pointer-events: none;
+    }
 
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-b-4 border-gray-500">
-            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Unread Messages</p>
-            <p class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-1">{{ unread_messages|default:0 }}</p>
-            <a href="{% url 'conversation:inbox' %}" class="text-gray-600 dark:text-gray-400 mt-2 block hover:underline text-sm">Go to inbox &rarr;</a>
-        </div>
+    .item-row {
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .item-row:hover {
+        transform: translateX(4px);
+        box-shadow: 0 4px 20px -4px rgba(20,184,166,0.15);
+        border-left-color: #14b8a6;
+    }
 
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-b-4 border-yellow-500">
-            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Items Sold</p>
-            <p class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-1">{{ sold_items_count|default:0 }}</p>
-            <span class="text-xs text-gray-500 dark:text-gray-400">Total items marked as sold.</span>
+    .glow-teal { box-shadow: 0 0 30px -5px rgba(20,184,166,0.3); }
+</style>
+
+<div class="max-w-6xl mx-auto px-3 lg:px-4 py-6">
+
+    <!-- Header -->
+    <div class="fade-up flex items-center justify-between mb-8">
+        <div>
+            <p class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-widest mb-1">Seller Portal</p>
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                <i class="fas fa-chart-line text-teal-500 mr-2"></i> Dashboard
+            </h1>
         </div>
+        <a href="{% url 'items:new' %}"
+           class="flex items-center gap-2 px-5 py-2.5 text-sm font-bold bg-gradient-to-r from-teal-500 to-emerald-600
+                  hover:from-teal-600 hover:to-emerald-700 text-white rounded-xl shadow-lg glow-teal
+                  transform hover:scale-[1.03] transition-all duration-300">
+            <i class="fas fa-plus-circle"></i> New Listing
+        </a>
     </div>
-    
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">Your Active Items</h2>
 
-    <div class="space-y-4">
-        {% if items %}
-            {% for item in items %}
-                <div class="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition duration-300">
-                    <div class="w-16 h-16 mr-4 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
-                        <div class="w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-xl">
-                            <i class="fas fa-camera"></i>
+    <!-- Stat Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+
+        <!-- Active Listings -->
+        <div class="stat-card fade-up fade-up-1 bg-gradient-to-br from-teal-500 to-emerald-600 p-5 rounded-2xl text-white shadow-xl">
+            <div class="flex items-start justify-between mb-4">
+                <div class="p-2.5 bg-white/20 rounded-xl backdrop-blur-sm">
+                    <i class="fas fa-store text-white text-lg"></i>
+                </div>
+                <span class="text-xs font-semibold bg-white/20 px-2 py-0.5 rounded-full">Active</span>
+            </div>
+            <p class="count-in text-4xl font-black tracking-tight">{{ items.count }}</p>
+            <p class="text-sm font-semibold text-white/80 mt-1">Active Listings</p>
+            <a href="{% url 'items:items' %}" class="mt-3 text-xs font-bold text-white/90 hover:text-white flex items-center gap-1 group">
+                Manage items <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <!-- Unread Messages -->
+        <div class="stat-card fade-up fade-up-2 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+            <div class="flex items-start justify-between mb-4">
+                <div class="p-2.5 bg-gray-100 dark:bg-gray-700 rounded-xl">
+                    <i class="fas fa-inbox text-gray-600 dark:text-gray-300 text-lg"></i>
+                </div>
+                {% if unread_messages %}
+                <span class="text-xs font-bold bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 px-2 py-0.5 rounded-full">
+                    {{ unread_messages }} new
+                </span>
+                {% endif %}
+            </div>
+            <p class="count-in text-4xl font-black text-gray-900 dark:text-gray-100 tracking-tight">{{ unread_messages|default:0 }}</p>
+            <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">Unread Messages</p>
+            <a href="{% url 'conversation:inbox' %}" class="mt-3 text-xs font-bold text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 flex items-center gap-1 group transition-colors">
+                Go to inbox <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <!-- Items Sold -->
+        <div class="stat-card fade-up fade-up-3 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+            <div class="flex items-start justify-between mb-4">
+                <div class="p-2.5 bg-yellow-50 dark:bg-yellow-900/30 rounded-xl">
+                    <i class="fas fa-trophy text-yellow-500 text-lg"></i>
+                </div>
+                <span class="text-xs font-semibold bg-yellow-50 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-0.5 rounded-full">All time</span>
+            </div>
+            <p class="count-in text-4xl font-black text-gray-900 dark:text-gray-100 tracking-tight">{{ sold_items_count|default:0 }}</p>
+            <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">Items Sold</p>
+            <p class="mt-3 text-xs text-gray-400 dark:text-gray-500">Total items marked as sold</p>
+        </div>
+
+    </div>
+
+    <!-- Active Items List -->
+    <div class="fade-up fade-up-4">
+        <div class="flex items-center justify-between mb-4 border-b border-gray-200 dark:border-gray-700 pb-3">
+            <h2 class="text-lg font-extrabold text-gray-900 dark:text-gray-100">
+                Your Active Items
+            </h2>
+            <span class="text-xs text-gray-400 dark:text-gray-500">{{ items.count }} listing{{ items.count|pluralize }}</span>
+        </div>
+
+        <div class="space-y-2">
+            {% if items %}
+                {% for item in items %}
+                <div class="item-row flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl
+                            border-l-4 border-transparent shadow-sm
+                            border border-gray-100 dark:border-gray-700">
+
+                    <!-- Thumbnail -->
+                    <div class="w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                            <i class="fas fa-camera text-lg"></i>
                         </div>
                     </div>
-                    
-                    <div class="flex-grow">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">{{ item.name }}</h3>
-                        <p class="text-sm text-teal-600 dark:text-teal-400 font-bold">${{ item.price|floatformat:2 }}</p>
+
+                    <!-- Info -->
+                    <div class="flex-grow min-w-0">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-gray-100 truncate">{{ item.name }}</h3>
+                        <div class="flex items-center gap-3 mt-0.5">
+                            <span class="text-sm font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-emerald-600">
+                                Ksh{{ item.price|floatformat:2 }}
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full font-semibold">
+                                <i class="fas fa-circle text-[6px]"></i> Live
+                            </span>
+                        </div>
                     </div>
 
-                    <div class="flex items-center space-x-3 ml-4 flex-shrink-0">
-                        <a href="{% url 'items:detail' item.pk %}" class="text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition duration-300">
-                            <i class="fas fa-eye mr-1"></i> View
+                    <!-- Actions -->
+                    <div class="flex items-center gap-2 flex-shrink-0">
+                        <a href="{% url 'items:detail' item.pk %}"
+                           class="p-2 text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-900/30 rounded-lg transition-all duration-200"
+                           title="View">
+                            <i class="fas fa-eye text-sm"></i>
                         </a>
-                        <a href="{% url 'items:edit' item.pk %}" class="px-3 py-1 text-sm font-medium text-white bg-teal-600 rounded hover:bg-teal-700 transition duration-300">
-                            <i class="fas fa-edit mr-1"></i> Edit
+                        <a href="{% url 'items:edit' item.pk %}"
+                           class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-teal-600 hover:bg-teal-700 rounded-lg transition duration-200 shadow-sm">
+                            <i class="fas fa-pen text-xs"></i> Edit
                         </a>
                     </div>
                 </div>
-            {% endfor %}
-        {% else %}
-            <div class="p-8 text-center bg-gray-50 dark:bg-gray-800/50 rounded-lg shadow-inner">
-                <p class="text-lg text-gray-600 dark:text-gray-400">You don't have any active listings yet.</p>
-                <a href="{% url 'items:new' %}" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition duration-300">
-                    <i class="fas fa-plus-circle mr-2"></i> Upload your first item
-                </a>
-            </div>
-        {% endif %}
+                {% endfor %}
+
+            {% else %}
+                <!-- Empty State -->
+                <div class="py-16 text-center bg-gray-50 dark:bg-gray-800/50 rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-teal-50 dark:bg-teal-900/30 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-store text-2xl text-teal-500"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-gray-700 dark:text-gray-300 mb-1">No active listings yet</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-5">Start selling by uploading your first item.</p>
+                    <a href="{% url 'items:new' %}"
+                       class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white
+                              bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700
+                              rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                        <i class="fas fa-plus-circle"></i> Upload your first item
+                    </a>
+                </div>
+            {% endif %}
+        </div>
     </div>
+
+</div>
 {% endblock %}

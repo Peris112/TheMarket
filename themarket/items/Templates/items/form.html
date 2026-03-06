@@ -1,24 +1,185 @@
 {% extends 'core/base.html' %}
 
-{% block title %} {{ title }}{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<h1 class="mb-6 text-3xl" >{{ title }}</h1>
-<form method="post" action="." enctype="multipart/form-data">
-    {% csrf_token %}
+<style>
+    /* Force visible text in all form inputs rendered by Django's as_p */
+    #django-form input[type="text"],
+    #django-form input[type="email"],
+    #django-form input[type="number"],
+    #django-form input[type="password"],
+    #django-form input[type="url"],
+    #django-form input[type="date"],
+    #django-form input[type="time"],
+    #django-form input[type="tel"],
+    #django-form input[type="search"],
+    #django-form input[type="file"],
+    #django-form select,
+    #django-form textarea {
+        width: 100%;
+        padding: 0.6rem 0.9rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.75rem;
+        font-size: 0.875rem;
+        color: #111827 !important;
+        background-color: #f9fafb;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+        margin-top: 0.25rem;
+        display: block;
+    }
 
-    <div class="space-y-4">
-        {{ form.as_p }}
+    #django-form select {
+        appearance: auto;
+        color: #111827 !important;
+        background-color: #f9fafb;
+    }
+
+    #django-form select option {
+        color: #111827 !important;
+        background-color: #ffffff;
+    }
+
+    #django-form input:focus,
+    #django-form select:focus,
+    #django-form textarea:focus {
+        border-color: #14b8a6;
+        box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+        background-color: #ffffff;
+    }
+
+    #django-form input:hover,
+    #django-form select:hover,
+    #django-form textarea:hover {
+        border-color: #14b8a6;
+    }
+
+    /* Dark mode */
+    .dark #django-form input[type="text"],
+    .dark #django-form input[type="email"],
+    .dark #django-form input[type="number"],
+    .dark #django-form input[type="password"],
+    .dark #django-form input[type="url"],
+    .dark #django-form input[type="date"],
+    .dark #django-form input[type="time"],
+    .dark #django-form input[type="tel"],
+    .dark #django-form input[type="search"],
+    .dark #django-form input[type="file"],
+    .dark #django-form select,
+    .dark #django-form textarea {
+        background-color: #1f2937;
+        border-color: #374151;
+        color: #f9fafb !important;
+    }
+
+    .dark #django-form select option {
+        background-color: #1f2937;
+        color: #f9fafb !important;
+    }
+
+    .dark #django-form input:focus,
+    .dark #django-form select:focus,
+    .dark #django-form textarea:focus {
+        background-color: #111827;
+        border-color: #14b8a6;
+    }
+
+    /* Labels */
+    #django-form label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #374151;
+        margin-bottom: 0.15rem;
+        text-transform: capitalize;
+    }
+
+    .dark #django-form label {
+        color: #d1d5db;
+    }
+
+    /* Paragraph wrapper spacing from as_p */
+    #django-form p {
+        margin-bottom: 1rem;
+    }
+
+    /* Help text */
+    #django-form .helptext,
+    #django-form span.helptext {
+        font-size: 0.7rem;
+        color: #6b7280;
+        margin-top: 0.2rem;
+        display: block;
+    }
+
+    /* Inline field errors */
+    #django-form ul.errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 0.25rem 0 0;
+    }
+
+    #django-form ul.errorlist li {
+        font-size: 0.75rem;
+        color: #ef4444;
+        font-weight: 600;
+    }
+
+    /* Placeholder colour */
+    #django-form input::placeholder,
+    #django-form textarea::placeholder {
+        color: #9ca3af;
+    }
+</style>
+
+<div class="mt-4 px-3 py-6 lg:px-4 bg-white dark:bg-gray-950 rounded-2xl transition-colors duration-500">
+    <div class="max-w-2xl mx-auto">
+
+        <!-- Header -->
+        <header class="mb-6 border-b border-teal-500/20 pb-4">
+            <h1 class="text-2xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                <i class="fas fa-pen-to-square mr-2 text-teal-500"></i>{{ title }}
+            </h1>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Fill in the details below and submit when ready.</p>
+        </header>
+
+        <!-- Global Errors -->
+        {% if form.errors or form.non_field_errors %}
+            <div class="mb-5 p-4 bg-red-50 dark:bg-red-950 border-l-4 border-red-500 rounded-xl text-sm text-red-700 dark:text-red-400">
+                <p class="font-bold flex items-center gap-2 mb-2">
+                    <i class="fas fa-circle-exclamation"></i> Please fix the following errors:
+                </p>
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <!-- Form -->
+        <form id="django-form" method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div>
+                {{ form.as_p }}
+            </div>
+
+            <!-- Actions -->
+            <div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-end gap-3">
+                <a href="javascript:history.back()"
+                   class="px-5 py-2.5 text-sm font-semibold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl transition duration-300">
+                    <i class="fas fa-arrow-left mr-1"></i> Cancel
+                </a>
+                <button type="submit"
+                        class="px-6 py-2.5 text-sm font-bold bg-gradient-to-r from-teal-500 to-teal-700 hover:from-teal-600 hover:to-teal-800
+                               text-white rounded-xl shadow-lg hover:shadow-teal-500/30 transform hover:scale-[1.02]
+                               focus:ring-4 focus:ring-teal-400 transition-all duration-300 flex items-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Submit
+                </button>
+            </div>
+        </form>
+
     </div>
-    {% if form.errors or form.non_field_errors %}
-        <div cass="mb-3 p-6 bg-red-400 rounded-xl">
-            {% for field in form  %}
-                {{ field.errors }}
-            {% endfor %}
-
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-    <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
-</form>
+</div>
 {% endblock content %}
